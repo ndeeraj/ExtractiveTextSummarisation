@@ -20,7 +20,7 @@ cleaned_train_f = os.path.join(parent, 'data', 'train_clean.csv')
 cleaned_test_f = os.path.join(parent, 'data', 'test_clean.csv')
 cleaned_val_f = os.path.join(parent, 'data', 'validation_clean.csv')
 
-WORD_COUNT_THRES = 3
+WORD_COUNT_THRES = 5
 MAX_THRESH = 65
 
 vocabulary = {}

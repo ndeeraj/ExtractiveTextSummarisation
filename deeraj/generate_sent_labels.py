@@ -17,8 +17,6 @@ content_train_df = pandas.read_csv(inp_train_file)
 content_test_df = pandas.read_csv(inp_test_file)
 content_val_df = pandas.read_csv(inp_val_file)
 
-WRD_LEN_THRESHOLD = 5
-
 curr_dir = os.getcwd()
 parent = os.path.dirname(os.path.dirname(curr_dir))
 
@@ -62,8 +60,6 @@ def fill_df(content_df, label_df, word_lengths):
         # print(sum_txt)
 
         for tmp_txt in art_sents:
-            if len(tmp_txt.strip()) < 15:
-                continue
             art_sent.extend(sent_tokenize(tmp_txt))
 
         for art_st in art_sent:
@@ -73,8 +69,6 @@ def fill_df(content_df, label_df, word_lengths):
             else:
                 label = 0
             word_count = len(art_st.split())
-            if word_count <= WRD_LEN_THRESHOLD:
-                continue
 
             label_df.at[label_df_ind, 'input'] = art_st
             label_df.at[label_df_ind, 'label'] = label
