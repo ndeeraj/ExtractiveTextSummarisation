@@ -10,15 +10,15 @@ import matplotlib.pyplot as plt
 import generate_sent_labels
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(os.path.dirname(curr_dir))
+parent = os.path.dirname(curr_dir)
 
 train_file = generate_sent_labels.train_label_file
 test_file = generate_sent_labels.test_label_file
 val_file = generate_sent_labels.val_label_file
 
-cleaned_train_f = os.path.join(parent, 'data', 'train_clean.csv')
-cleaned_test_f = os.path.join(parent, 'data', 'test_clean.csv')
-cleaned_val_f = os.path.join(parent, 'data', 'validation_clean.csv')
+cleaned_train_f = os.path.join(parent, 'generated-data', 'train_clean.csv')
+cleaned_test_f = os.path.join(parent, 'generated-data', 'test_clean.csv')
+cleaned_val_f = os.path.join(parent, 'generated-data', 'validation_clean.csv')
 
 WORD_COUNT_THRES = 5
 MAX_THRESH = 65

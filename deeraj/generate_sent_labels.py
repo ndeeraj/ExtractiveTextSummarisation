@@ -1,5 +1,4 @@
 import re
-import string
 import time
 
 import pandas
@@ -18,11 +17,11 @@ content_test_df = pandas.read_csv(inp_test_file)
 content_val_df = pandas.read_csv(inp_val_file)
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(os.path.dirname(curr_dir))
+parent = os.path.dirname(curr_dir)
 
-train_label_file = os.path.join(parent, 'data', 'bbc_labelled_train.csv')
-test_label_file = os.path.join(parent, 'data', 'bbc_labelled_test.csv')
-val_label_file = os.path.join(parent, 'data', 'bbc_labelled_val.csv')
+train_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_train.csv')
+test_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_test.csv')
+val_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_val.csv')
 
 
 def gen_sen_labels():

@@ -8,7 +8,7 @@ from gensim.models import Word2Vec
 EMBEDDINGS_SIZE = 50
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(os.path.dirname(curr_dir))
+parent = os.path.dirname(curr_dir)
 
 embedding_file = os.path.join(parent, 'generated', 'embeddings_bbc.txt')
 model_file = os.path.join(parent, 'generated', 'wrd2vec_bbc.model')
