@@ -9,7 +9,7 @@ The supervised models expects the preprocessed sentence level labelled train, te
 
 If you want to generate these files yourself, you should use the below data pipeline:
 
-- The BBC dataset with folder name as "bbc-data" with subfolders 'News Articles', 'Summaries' should be placed as \[project-root\]
+- The BBC dataset with folder name as "bbc-data" with subfolders 'News Articles', 'Summaries' should be placed at \[project-root\]
 - run `supervised_models/prepare_bbc_data.py`, this script will create train, test, validation csv files in \[project-root\]/generated-data
 - run `supervised_models/generate_sent_labels.py`, this script will create sentence level labelled data in \[project-root\]/generated-data based on the files from above step
 - run `supervised_models/preprocessing_bbc.py`, this script will create preprocessed data from the above labelled files in \[project-root\]/generated-data
