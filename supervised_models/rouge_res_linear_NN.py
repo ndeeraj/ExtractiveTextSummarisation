@@ -57,7 +57,8 @@ def visualize_res(com_res, labels):
     plt.plot(x_axis, com_res['rouge-1']['f'], linestyle='dashed', label='rouge-1_f', color='black')
     plt.xlabel('methods')
     plt.ylabel('average value')
-    plt.legend(loc='lower right')
+    plt.ylim(0, 1)
+    plt.legend(loc='best')
 
     plt.figure(2)
     plt.title("rouge-2")
@@ -66,7 +67,8 @@ def visualize_res(com_res, labels):
     plt.plot(x_axis, com_res['rouge-2']['f'], linestyle='dotted', label='rouge-2_f', color='black')
     plt.xlabel('methods')
     plt.ylabel('average value')
-    plt.legend(loc='lower right')
+    plt.ylim(0, 1)
+    plt.legend(loc='best')
 
     plt.figure(3)
     plt.title("rouge-l")
@@ -75,7 +77,8 @@ def visualize_res(com_res, labels):
     plt.plot(x_axis, com_res['rouge-l']['f'], label='rouge-l_f', color='black')
     plt.xlabel('methods')
     plt.ylabel('average value')
-    plt.legend(loc='lower right')
+    plt.ylim(0, 1)
+    plt.legend(loc='best')
     plt.show()
 
 
