@@ -21,4 +21,6 @@ Logistic regression: supervised_models/LogisticR.ipynb
 SVM: supervised_models/SVM.ipynb
 Feed forward NN: supervised_models/NN.ipynb
 
-These notebooks create their corresponding result csv files containing the original articles, original summary, model summary (summary generated from the trained model) for the test set which can be used to compute the ROUGE scores.  
+These notebooks create their corresponding result csv files containing the original articles, original summary, model summary (summary generated from the trained model) for the test set which can be used to compute the ROUGE scores.
+
+ROUGE scores can be computed using the script `supervised_models/rouge_res_linear_NN.py`, the script expects the result files from the models to be in \['logr_results.csv', 'svm_results.csv', 'NN_results.csv'\] for logistic regression, svm, feed forward models respectively.
