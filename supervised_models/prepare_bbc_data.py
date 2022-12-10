@@ -22,7 +22,16 @@ train_percent = 0.8
 test_percent = 0.1
 val_percent = 0.1
 
-total = 2225
+# total articles in the dataset
+TOTAL = 2225
+
+"""
+This script will create train, test, validation csv files from the bbc-dataset based on 
+the split percentages defined and puts them in [project-root]/generated-data
+
+Assumes that the bbc dataset is in [[project-root]/bbc-data folder with sub folders as
+'News Articles' and 'Summaries'
+"""
 
 
 def prepare():
@@ -37,6 +46,8 @@ def prepare():
     combined_d_test = pd.DataFrame(headers)
     combined_d_val = pd.DataFrame(headers)
 
+    # for each topic the percentage is applied so that the test/train/validation dataset is not
+    # biased towards a specific topic
     for topic in art_sub_dir:
         art_file_dir = os.path.join(art_dir, topic)
         sum_file_dir = os.path.join(sum_dir, topic)
