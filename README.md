@@ -17,11 +17,11 @@ If you want to generate these files yourself, you should use the below data pipe
 
 Once these generated files are in place, you can follow the steps in the following notebooks to generate results from different models:
 
-Logistic regression: supervised_models/LogisticR.ipynb
+Logistic regression: `supervised_models/LogisticR.ipynb`
 
-SVM: supervised_models/SVM.ipynb
+SVM: `supervised_models/SVM.ipynb`
 
-Feed forward NN: supervised_models/NN.ipynb
+Feed forward NN: `supervised_models/NN.ipynb`
 
 These notebooks create their corresponding result csv files containing the original articles, original summary, model summary (summary generated from the trained model) for the test set which can be used to compute the ROUGE scores.
 
