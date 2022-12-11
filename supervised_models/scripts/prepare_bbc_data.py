@@ -3,15 +3,15 @@ import pandas as pd
 import os
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(curr_dir)
+project_root = os.path.dirname(os.path.dirname(curr_dir))
 
-out_train_file = os.path.join(parent, 'generated-data', 'bbc_combined_train.csv')
-out_test_file = os.path.join(parent, 'generated-data', 'bbc_combined_test.csv')
-out_val_file = os.path.join(parent, 'generated-data', 'bbc_combined_val.csv')
+out_train_file = os.path.join(project_root, 'generated-data', 'bbc_combined_train.csv')
+out_test_file = os.path.join(project_root, 'generated-data', 'bbc_combined_test.csv')
+out_val_file = os.path.join(project_root, 'generated-data', 'bbc_combined_val.csv')
 out_files = [out_train_file, out_test_file, out_val_file]
 
-art_dir = os.path.join(parent, 'bbc-data', 'News Articles')
-sum_dir = os.path.join(parent, 'bbc-data', 'Summaries')
+art_dir = os.path.join(project_root, 'bbc-data', 'News Articles')
+sum_dir = os.path.join(project_root, 'bbc-data', 'Summaries')
 
 art_sub_dir = os.listdir(art_dir)
 sum_sub_dir = os.listdir(sum_dir)
@@ -29,7 +29,7 @@ TOTAL = 2225
 This script will create train, test, validation csv files from the bbc-dataset based on 
 the split percentages defined and puts them in [project-root]/generated-data
 
-Assumes that the bbc dataset is in [[project-root]/bbc-data folder with sub folders as
+Assumes that the bbc dataset is in [project-root]/bbc-data folder with sub folders as
 'News Articles' and 'Summaries'
 """
 

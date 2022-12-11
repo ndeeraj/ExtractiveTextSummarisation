@@ -17,11 +17,11 @@ content_test_df = pandas.read_csv(inp_test_file)
 content_val_df = pandas.read_csv(inp_val_file)
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(curr_dir)
+project_root = os.path.dirname(os.path.dirname(curr_dir))
 
-train_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_train.csv')
-test_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_test.csv')
-val_label_file = os.path.join(parent, 'generated-data', 'bbc_labelled_val.csv')
+train_label_file = os.path.join(project_root, 'generated-data', 'bbc_labelled_train.csv')
+test_label_file = os.path.join(project_root, 'generated-data', 'bbc_labelled_test.csv')
+val_label_file = os.path.join(project_root, 'generated-data', 'bbc_labelled_val.csv')
 
 """
 This script will create sentence level labelled data in [project-root]/generated-data based on 

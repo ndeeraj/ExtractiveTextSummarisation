@@ -7,14 +7,15 @@ from gensim.models import Word2Vec
 
 '''
 This script will create the word2vec learned embeddings from the preprocessed data 
-in [project-root]/generated
+in [project-root]/generated-data and write the learned embeddings in 
+[project-root]/generated/embeddings_bbc.txt
 '''
 EMBEDDINGS_SIZE = 50
 
 curr_dir = os.getcwd()
-parent = os.path.dirname(curr_dir)
+project_root = os.path.dirname(os.path.dirname(curr_dir))
 
-embedding_file = os.path.join(parent, 'generated', 'embeddings_bbc.txt')
+embedding_file = os.path.join(project_root, 'generated', 'embeddings_bbc.txt')
 # not being used downstream, so not storing for now
 #model_file = os.path.join(parent, 'generated', 'wrd2vec_bbc.model')
 
