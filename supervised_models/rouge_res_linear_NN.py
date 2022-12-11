@@ -1,3 +1,4 @@
+import os
 import time
 import pandas as pd
 from rouge import Rouge
@@ -9,6 +10,10 @@ This script computes the average ROUGE score for the result files, which are csv
 Assumes the result file names for logistic regression, svm, feed forward models as 
 'logr_results.csv', 'svm_results.csv', 'NN_results.csv' respectively and to be in the same folder as
 the script.
+
+Also, this script loads the tex rank results from 
+[project-root]/generated-data/RougeScoreTextRank_testset.csv which was created upstream and plots
+the performance of all the 4 models for each ROUGE metric
 '''
 
 
@@ -82,6 +87,36 @@ def visualize_res(com_res, labels):
     plt.show()
 
 
+def _load_testrank_results(com_res):
+    """
+    loads results from text rank model as recorded in
+    [project-root]/generated-data/RougeScoreTextRank_testset.csv
+
+    Parameter:
+        com_res (dict): appends the results to this dictionary
+    """
+    curr_dir = os.getcwd()
+    parent = os.path.dirname(curr_dir)
+    res_file = os.path.join(parent, 'generated-data', 'RougeScoreTextRank_testset.csv')
+    data = pd.read_csv(res_file)
+
+    rouge_1_res = data['rouge-1'].tolist()
+    rouge_2_res = data['rouge-2'].tolist()
+    rouge_l_res = data['rouge-l'].tolist()
+
+    com_res['rouge-1']['r'].append(rouge_1_res[0])
+    com_res['rouge-1']['p'].append(rouge_1_res[1])
+    com_res['rouge-1']['f'].append(rouge_1_res[2])
+
+    com_res['rouge-2']['r'].append(rouge_2_res[0])
+    com_res['rouge-2']['p'].append(rouge_2_res[1])
+    com_res['rouge-2']['f'].append(rouge_2_res[2])
+
+    com_res['rouge-l']['r'].append(rouge_l_res[0])
+    com_res['rouge-l']['p'].append(rouge_l_res[1])
+    com_res['rouge-l']['f'].append(rouge_l_res[2])
+
+
 if __name__ == '__main__':
     start = time.time()
     res_files = ['logr_results.csv', 'svm_results.csv', 'NN_results.csv']
@@ -103,7 +138,9 @@ if __name__ == '__main__':
         com_res['rouge-l']['p'].append(res['rouge-l']['p'])
         com_res['rouge-l']['f'].append(res['rouge-l']['f'])
 
-    visualize_res(com_res, ['logistic', 'svm', 'NN'])
+    _load_testrank_results(com_res)
+
+    visualize_res(com_res, ['logistic', 'svm', 'NN', 'Text rank'])
 
     end = time.time()
     print("Time taken: " + str(end - start))
