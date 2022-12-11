@@ -29,6 +29,9 @@ Feed forward NN: `supervised_models/NN.ipynb`
 
 These notebooks create their corresponding result csv files containing the original articles, original summary, model summary (summary generated from the trained model) for the test set which can be used to compute the ROUGE scores.
 
+Results
+-----------------
+
 ROUGE scores can be computed using the script `[project-root]/supervised_models/rouge_results.py`, the script expects the result files from the models to be in \['logr_results.csv', 'svm_results.csv', 'NN_results.csv'\] for logistic regression, svm, feed forward models respectively. This script loads the text rank results from 
 \[project-root\]/generated-data/RougeScoreTextRank_testset.csv which was created upstream and plots
 the performance of all the 4 models for each ROUGE metric
