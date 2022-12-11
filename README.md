@@ -32,6 +32,6 @@ These notebooks create their corresponding result csv files containing the origi
 Results
 -----------------
 
-ROUGE scores can be computed using the script `[project-root]/supervised_models/rouge_results.py`, the script expects the result files from the models to be in \['logr_results.csv', 'svm_results.csv', 'NN_results.csv'\] for logistic regression, svm, feed forward models respectively. This script loads the text rank results from 
+ROUGE scores can be computed using the script `[project-root]/supervised_models/rouge_results.py`, the script expects the result files from the models to be in \['\[project-root\]/supervised_models/logr_results.csv', '\[project-root\]/supervised_models/svm_results.csv', '\[project-root\]/supervised_models/NN_results.csv'\] for logistic regression, svm, feed forward models respectively. This script loads the text rank results from 
 \[project-root\]/generated-data/RougeScoreTextRank_testset.csv which was created upstream and plots
 the performance of all the 4 models for each ROUGE metric
