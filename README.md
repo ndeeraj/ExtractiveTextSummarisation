@@ -2,6 +2,10 @@
 
 Perform extractive text summarization on BBC dataset using TextRank and other supervised models (logistic regression, SVM, feed forward network) and evaluate their performance based on ROUGE scores.
 
+Text rank
+-----------------
+\[how to run? - FILL ME\]
+
 Supervised Models
 -----------------
 
@@ -17,14 +21,17 @@ If you want to generate these files yourself, you should use the below data pipe
 
 Once these generated files are in place, you can follow the steps in the following notebooks to generate results from different models:
 
-Logistic regression: supervised_models/LogisticR.ipynb
+Logistic regression: `supervised_models/LogisticR.ipynb`
 
-SVM: supervised_models/SVM.ipynb
+SVM: `supervised_models/SVM.ipynb`
 
-Feed forward NN: supervised_models/NN.ipynb
+Feed forward NN: `supervised_models/NN.ipynb`
 
 These notebooks create their corresponding result csv files containing the original articles, original summary, model summary (summary generated from the trained model) for the test set which can be used to compute the ROUGE scores.
 
-ROUGE scores can be computed using the script `[project-root]/supervised_models/rouge_results.py`, the script expects the result files from the models to be in \['logr_results.csv', 'svm_results.csv', 'NN_results.csv'\] for logistic regression, svm, feed forward models respectively. This script loads the text rank results from 
-\[project-root\]/generated-data/RougeScoreTextRank_testset.csv which was created upstream and plots
+Results
+-----------------
+
+ROUGE scores can be computed using the script `[project-root]/supervised_models/rouge_results.py`, the script expects the result files from the models to be in `[project-root]/supervised_models/logr_results.csv`, `[project-root]/supervised_models/svm_results.csv`, `[project-root\]/supervised_models/NN_results.csv` for logistic regression, svm, feed forward models respectively. This script loads the text rank results from 
+`[project-root]/generated-data/RougeScoreTextRank_testset.csv` which was created upstream and plots
 the performance of all the 4 models for each ROUGE metric
