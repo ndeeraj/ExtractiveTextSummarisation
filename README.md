@@ -4,7 +4,17 @@ Perform extractive text summarization on BBC dataset using TextRank and other su
 
 Text rank
 -----------------
-\[how to run? - FILL ME\]
+Please follow the instructions below to run the EDA and text rank model for extractive summary generation and to replicate the results:
+
+- The file 'ExtractiveTextSummarisation_TextRank.py' performs the EDA and extractive text summarization on the dataset using test rank algorith. It also evaluates Rouge scores for the results generated. 
+- The BBC dataset with folder name as "BBC News Summary" with subfolders 'News Articles', 'Summaries' should be placed at working directory
+- The following environmental variables should be installed and imported (with the correct versions)
+1. Rouge (!pip install rouge)
+2. networkx version < 2.7 (we are using 2.6.3) 
+3. scipy version 1.7.3 (< 1.8)
+4. Glove word embeddings downloaded and unzipped (uncomment code lines for them: 236 and 237)
+- Run the file 'ExtractiveTextSummarisation_TextRank.py'
+
 
 Supervised Models
 -----------------
