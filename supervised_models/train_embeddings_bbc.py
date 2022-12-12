@@ -13,7 +13,7 @@ in [project-root]/generated-data and write the learned embeddings in
 EMBEDDINGS_SIZE = 50
 
 curr_dir = os.getcwd()
-project_root = os.path.dirname(os.path.dirname(curr_dir))
+project_root = os.path.dirname(curr_dir)
 
 embedding_file = os.path.join(project_root, 'generated', 'embeddings_bbc.txt')
 # not being used downstream, so not storing for now

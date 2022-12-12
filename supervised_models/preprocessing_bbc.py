@@ -1,7 +1,6 @@
 import re
 import string
 import time
-import warnings
 
 import pandas as pd
 import os
@@ -10,7 +9,7 @@ import matplotlib.pyplot as plt
 import generate_sent_labels
 
 curr_dir = os.getcwd()
-project_root = os.path.dirname(os.path.dirname(curr_dir))
+project_root = os.path.dirname(curr_dir)
 
 train_file = generate_sent_labels.train_label_file
 test_file = generate_sent_labels.test_label_file

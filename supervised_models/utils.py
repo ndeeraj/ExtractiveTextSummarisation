@@ -1,4 +1,5 @@
-from supervised_models.scripts import train_embeddings_bbc, preprocessing_bbc
+import train_embeddings_bbc
+import preprocessing_bbc
 import numpy as np
 from nltk.tokenize import sent_tokenize
 

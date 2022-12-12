@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 curr_dir = os.getcwd()
-project_root = os.path.dirname(os.path.dirname(curr_dir))
+project_root = os.path.dirname(curr_dir)
 
 out_train_file = os.path.join(project_root, 'generated-data', 'bbc_combined_train.csv')
 out_test_file = os.path.join(project_root, 'generated-data', 'bbc_combined_test.csv')
