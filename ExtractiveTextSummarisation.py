@@ -4,6 +4,18 @@
 Created on Mon Dec  5 15:17:10 2022
 
 @author: skj
+
+Description to run the file:
+1. The datafile should be locally avaivable on the machine running the code. The path on lines 53 and 54 will need to be changed accodingly
+1. Make sure all the libraries used are installed in the environment
+2. Rouge can be installed with the command 'pip install rouge'
+3. Make sure the networkx version < 2.7 (we are using 2.6.3) and the scipy version is 1.7.3 .
+ If the networkx version > 2.7 or scipy > 1.8, it will make the code fail s
+ ince there is a compatibity issue with scipy newer versions. Refer to the 
+ stackexchance thread below:
+     
+https://stackoverflow.com/questions/74175462/attributeerror-module-scipy-sparse-has-no-attribute-coo-array
+
 """
 
 #Import all the libraries here
@@ -15,6 +27,7 @@ import re
 import matplotlib.pyplot as plt
 
 from sklearn.metrics.pairwise import cosine_similarity
+#!pip install networkx
 import networkx as nx
 import scipy.sparse
 
@@ -25,13 +38,11 @@ from nltk.tokenize import sent_tokenize
 #not using lemmatization for text processing, since we need grammatically correct sentences
 #from nltk.stem import WordNetLemmatizer 
 #lemmatizer = WordNetLemmatizer()
-
-from tensorflow.keras.preprocessing.text import Tokenizer 
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-
+#from tensorflow.keras.preprocessing.text import Tokenizer 
+#from tensorflow.keras.preprocessing.sequence import pad_sequences
 #stop_words = set(stopwords.words("english"))  
 
-  
+ #!pip install rouge 
 from rouge_score import rouge_scorer
 from rouge import Rouge
 
@@ -110,15 +121,6 @@ def text_cleaning(column_text_list):
         # Remove mailto:
         row = re.sub("(mailto:)", " ", str(row)).lower()
 
-        # Remove \x9* in text
-        row = re.sub(r"(\\x9\d)", " ", str(row)).lower()
-
-        # Replace INC nums to INC_NUM
-        row = re.sub("([iI][nN][cC]\d+)", "INC_NUM", str(row)).lower()
-
-        # Replace CM# and CHG# to CM_NUM
-        row = re.sub("([cC][mM]\d+)|([cC][hH][gG]\d+)", "CM_NUM", str(row)).lower()
-
         # Replace any url to only the domain name
         try:
             url = re.search(r"((https*:\/*)([^\/\s]+))(.[^\s]+)", str(row))
@@ -129,7 +131,6 @@ def text_cleaning(column_text_list):
 
         # Remove multiple spaces
         row = re.sub("(\s+)", " ", str(row)).lower()
-
         yield row
 
 cleaned_text = text_cleaning(data.text)
@@ -137,6 +138,7 @@ cleaned_summary = text_cleaning(data.summary)
 
 data['cleaned_text'] = pd.Series(cleaned_text)
 data['cleaned_summary'] = pd.Series(cleaned_summary)
+
 print(data.head())
 
 #Exploratoty Data Analysis
@@ -230,6 +232,7 @@ we shall be implementing it for this project.
 #Code  Reference Source: https://keras.io/examples/nlp/pretrained_word_embeddings/ 
 #install and import wget in the code environment   
  
+"Uncomment and run the two code lines below to download the Glove Word Embeddings"
 #!wget http://nlp.stanford.edu/data/glove.6B.zip
 #!unzip -q glove.6B.zip
 
@@ -305,6 +308,8 @@ for idx in range(len(data.cleaned_text)):
     predictions.append(TextRank(data.cleaned_text[idx], word_embeddings, 3))
     gold_labels.append(data.cleaned_summary[idx])
     
+result_textrank_df = pd.DataFrame({'article' : data.text, 'ref_summary': data.summary, 'model_summary': pd.Series(predictions)})
+result_textrank_df.to_csv('Results/TextRank_Results.csv')
 
 #Model Evaluation
 
@@ -313,6 +318,7 @@ scorer = Rouge()
 score_avg = scorer.get_scores(predictions, gold_labels, avg = True)
 score_avg_df = pd.DataFrame(score_avg)
 print(score_avg_df)
+score_avg_df.to_csv("Results/RougeScoreTextRank_complete.csv")
 
 #Detailed report on the score (every article)
 textRank_scores = scorer.get_scores(predictions, gold_labels)
@@ -375,5 +381,29 @@ scores_df['rouge-l F1_score'] = rougel_f1
 print(scores_df)
 print(scores_df.info())
 print(scores_df.describe())
+
+#scores_df.to_csv("Results/RougeScoreTextRank_detailed.csv")
+
+
+#Evaluate the rouge scores on the common test set
+test_data = pd.read_csv("bbc_combined_test.csv")
+test_data.head()
+
+cleaned_text_test = text_cleaning(test_data.article)
+cleaned_summary_test = text_cleaning(test_data.summary)
+
+test_data['cleaned_text'] = pd.Series(cleaned_text_test)
+test_data['cleaned_summary'] = pd.Series(cleaned_summary_test)
+
+testgold_labels = []
+testpredictions = []
+for idx in range(len(test_data.article)):
+    testpredictions.append(TextRank(test_data.cleaned_text[idx], word_embeddings, 3))
+    testgold_labels.append(test_data.cleaned_summary[idx])
+
+testscore_avg = scorer.get_scores(testpredictions, testgold_labels, avg = True)
+testscore_avg_df = pd.DataFrame(testscore_avg)
+print(testscore_avg_df)
+testscore_avg_df.to_csv("Results/RougeScoreTextRank_testset.csv")
 
 
